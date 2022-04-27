@@ -1,0 +1,16 @@
+#: import StiffScrollEffect kivymd.effects.stiffscroll.StiffScrollEffect
+<AboutScreen>
+	Image:
+		source: app.image
+		opacity: .4
+	ScrollView:
+		effect_cls: StiffScrollEffect
+		MDBoxLayout:
+			padding: 20
+			orientation: 'vertical'
+			adaptive_height: True
+			MDLabel:
+				id: about_lbl
+				markup: True
+				font_size: '25dp'
+				adaptive_height: True

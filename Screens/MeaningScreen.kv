@@ -1,0 +1,83 @@
+#: import StiffScrollEffect kivymd.effects.stiffscroll.StiffScrollEffect
+#: import Window kivy.core.window.Window
+<MeaningScreen>:
+	spacing: 30
+	MDBoxLayout:
+		orientation: 'vertical'
+		spacing: 30
+		id: holder
+		MDCard:
+			size_hint: .8, None
+			pos_hint: {'top': .95, 'center_x': .5}
+			radius: 30, 30, 30, 30
+			padding: 30, 0, 0, 0
+			height: '60dp'
+			elevation: 10
+			MDLabel:
+				id: text
+				bold: True
+				text: root.searchword
+				font_style: 'Subtitle1'
+				valign: 'center'
+			MDIconButton:
+				id: star
+				icon: 'star'
+				size_hint: None, None
+				pos_hint: {'center_y': .5}
+				theme_text_color: 'Custom'
+				on_press: root.starMarker(self, root.searchword)
+			MDIconButton:
+				id: speak
+				icon: 'play'
+				_no_ripple_effect: True
+				size_hint: None, None
+				pos_hint: {'center_y': .5}
+				theme_text_color: 'Custom'
+				text_color: app.additional_color
+				on_press: root.say(text.text)
+			MDIconButton:
+				id: add
+				icon: 'plus-thick'
+				size_hint: None, None
+				pos_hint: {'center_y': .5}
+				theme_text_color: 'Custom'
+				text_color: app.additional_color
+				on_press: root.addToNotes(text.text)
+		MDBoxLayout:
+			orientation: 'vertical'
+			RecycleView:
+				id: container
+				effect_cls: StiffScrollEffect
+				key_viewclass: 'viewclass'
+				key_size: 'height'
+				RecycleBoxLayout:
+		        	default_size: None, dp(48)
+		        	default_size_hint: 1, None
+		        	size_hint_y: None
+		        	height: self.minimum_height
+		        	orientation: 'vertical'
+		        	padding: 10
+		        	spacing: 10
+
+<CustomMeaningList>
+	MDLabel:
+		text: '[b]%s.)[/b] %s'%(root.number, root.text)
+		markup: True
+
+<MakeNote>
+	size_hint_y: None
+	height: '100dp'
+	orientation: 'vertical'
+	MDLabel:
+		text: root.text
+		adaptive_height: True
+		size_hint_y: .1
+		id: word
+	MDTextField:
+		mode: 'rectangle'
+		id: note
+		pos_hint: {'center_x': .5}
+		hint_text: 'Enter Your Notes'
+		multiline: True
+		size_hint_y: .9
+		max_text_length: 50

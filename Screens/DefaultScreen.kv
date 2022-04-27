@@ -1,0 +1,57 @@
+#: import OpacityScrollEffect kivy.effects.scroll.ScrollEffect
+<DefaultScreen>
+	MDBoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'center_x': .5, 'center_y': .5}
+		Widget:
+			size_hint_y: .1
+		ScrollView:
+			effect_cls: OpacityScrollEffect
+			MDGridLayout:
+				adaptive_height: True
+				cols: 2
+				spacing: 30
+				padding: 40,0,40,0
+				pos_hint: {'center_y': .5, 'center_x': .5}
+				CustomRound:
+					icon: 'shuffle-variant'
+					on_press: app.getrandomword()
+				CustLabel:
+					text: '[u]Random Word[/u]'
+					pos_hint: {'center_y': .5}
+					valign: 'center'
+					on_press: app.getrandomword()
+				CustomRound:
+					icon: 'history'
+					on_press: app.changeOptionScreen('history', 'left')
+				CustLabel:
+					text: '[u]History[/u]'
+					on_press: app.changeOptionScreen('history', 'left')
+				CustomRound:
+					icon: 'notebook'
+					on_press: app.changeOptionScreen('notes', 'left')
+				CustLabel:
+					text: '[u]Notes[/u]'
+					on_press: app.changeOptionScreen('notes', 'left')
+				CustomRound:
+					icon: 'star-face'
+					on_press: app.changeOptionScreen('bookmark', 'left')
+				CustLabel:
+					text: '[u]Bookmark[/u]'
+					on_press: app.changeOptionScreen('bookmark', 'left')
+				CustomRound:
+					icon: 'information'
+					on_press: app.changeOptionScreen('about us', 'left')
+				CustLabel:
+					text: '[u]About Us[/u]'
+					on_press: app.changeOptionScreen('about us', 'left')
+
+
+<CustLabel@MDTextButton>
+	theme_text_color: 'Custom'
+	text_color: app.theme_cls.primary_color
+	bold: True
+	font_name: 'Fonts/Sparkling.ttf'
+	font_size: '30dp'
+	markup: True
+	
